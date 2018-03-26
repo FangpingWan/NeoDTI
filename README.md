@@ -29,9 +29,7 @@ To reproduce our results:
 * mat_drug_protein_disease.txt: Drug_Protein interaction matrix, in which DTIs with drugs or proteins sharing similar diseases (i.e., Jaccard similarities > 0.6) were removed (see the paper).
 * mat_compound_protein_bindingaffinity.txt: Compound-Protein binding affinity matrix (measured by negative logarithm of _Ki_).
 
-
-
-Note: drugs (or compounds), proteins, diseases and side-effects are organized in the same order across all files, including name lists, ID mappings and interaction/association matrices.
+All entities (i.e., drugs, compounds, proteins, diseases and side-effects) are organized in the same order across all files.
 
 
 # Contacts

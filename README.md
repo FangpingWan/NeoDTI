@@ -5,10 +5,15 @@ NeoDTI: Neural integration of neighbor information from a heterogeneous network 
 To reproduce our results:
 1. Unzip data.zip in ./data.
 2. Run <code>NeoDTI_cv.py</code> to reproduce the cross validation results of NeoDTI. Options are:  
-`-d:The embedding dimension d, default: 1024"` 
-`-d:The embedding dimension d, default: 1024"` 
-
-3. Run <code>NeoDTI_cv_with_aff.py</code> to reproduce the cross validation results of NeoDTI with additional compound-protein binding affinity data.
+`-d: The embedding dimension d, default: 1024.`  
+`-n: Global norm to be clipped, default: 1.`  
+`-k: The dimension of project matrices, default: 512.`  
+`-r: Positive and negative. Two choices: ten and all, the former one sets the positive:negative = 1:10, the latter one considers all unknown DTIs as negative examples. Default: ten.`  
+`-t: Test scenario. The DTI matrix to be tested. Choices are: o, mat_drug_protein.txt will be tested; homo, mat_drug_protein_homo_protein_drug.txt will be tested; drug, mat_drug_protein_drug.txt will be tested; disease, mat_drug_protein_disease.txt will be tested; sideeffect, mat_drug_protein_sideeffect.txt will be tested; unique, mat_drug_protein_drug_unique.txt will be tested. Default: o.`
+3. Run <code>NeoDTI_cv_with_aff.py</code> to reproduce the cross validation results of NeoDTI with additional compound-protein binding affinity data. Options are:  
+`-d: The embedding dimension d, default: 1024.`  
+`-n: Global norm to be clipped, default: 1.`  
+`-k: The dimension of project matrices, default: 512.`  
 
 # Data description
 * drug.txt: list of drug names.
@@ -30,6 +35,7 @@ To reproduce our results:
 * mat_drug_protein_drug.txt: Drug_Protein interaction matrix, in which DTIs with drugs sharing similar drug interactions (i.e., Jaccard similarities > 0.6) were removed (see the paper).
 * mat_drug_protein_sideeffect.txt: Drug_Protein interaction matrix, in which DTIs with drugs sharing similar side effects (i.e., Jaccard similarities > 0.6) were removed (see the paper).
 * mat_drug_protein_disease.txt: Drug_Protein interaction matrix, in which DTIs with drugs or proteins sharing similar diseases (i.e., Jaccard similarities > 0.6) were removed (see the paper).
+* mat_drug_protein_unique: Drug_Protein interaction matrix, in which known unique and non-unique DTIs were labelled as 3 and 1, respectively, the corresponding unknown ones were labelled as 2 and 0 (see the paper for the definition of unique). 
 * mat_compound_protein_bindingaffinity.txt: Compound-Protein binding affinity matrix (measured by negative logarithm of _Ki_).
 
 All entities (i.e., drugs, compounds, proteins, diseases and side-effects) are organized in the same order across all files.

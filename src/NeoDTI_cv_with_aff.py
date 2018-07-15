@@ -121,7 +121,6 @@ dim_pass = int(opts.d)
 
 
 class Model(object):
-    #domain adaptation model.
     def __init__(self):
         self._build_model()
     
@@ -271,7 +270,7 @@ with graph.as_default():
 
     optimize = tf.train.AdamOptimizer(learning_rate)
     gradients, variables = zip(*optimize.compute_gradients(total_loss))
-    gradients, _ = tf.clip_by_global_norm(gradients, opts.n)
+    gradients, _ = tf.clip_by_global_norm(gradients, int(opts.n))
     optimizer = optimize.apply_gradients(zip(gradients, variables))
 
     eval_pred = model.drug_protein_reconstruct

@@ -1,5 +1,5 @@
 # NeoDTI
-NeoDTI: Neural integration of neighbor information from a heterogeneous network for discovering new drug-target interactions [(preprint)](https://www.biorxiv.org/content/early/2018/02/07/261396).
+NeoDTI: Neural integration of neighbor information from a heterogeneous network for discovering new drug-target interactions [(Bioinformatics)](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/bty543/5047760).
 
 # Requirements
 * Tensorflow (tested on version 1.0.1 and version 1.2.0)

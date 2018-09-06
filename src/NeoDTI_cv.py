@@ -145,10 +145,18 @@ class Model(object):
         self.protein_embedding = weight_variable([num_protein,dim_protein])
         self.disease_embedding = weight_variable([num_disease,dim_disease])
         self.sideeffect_embedding = weight_variable([num_sideeffect,dim_sideeffect])
-        
+
+        tf.add_to_collection('l2_reg', tf.contrib.layers.l2_regularizer(1.0)(self.drug_embedding))
+        tf.add_to_collection('l2_reg', tf.contrib.layers.l2_regularizer(1.0)(self.protein_embedding))
+        tf.add_to_collection('l2_reg', tf.contrib.layers.l2_regularizer(1.0)(self.disease_embedding))
+        tf.add_to_collection('l2_reg', tf.contrib.layers.l2_regularizer(1.0)(self.sideeffect_embedding))
+
+
+
         #feature passing weights (maybe different types of nodes can use different weights)
         W0 = weight_variable([dim_pass+dim_drug, dim_drug])
         b0 = bias_variable([dim_drug])
+        tf.add_to_collection('l2_reg', tf.contrib.layers.l2_regularizer(1.0)(W0))
 
         #passing 1 times (can be easily extended to multiple passes)
         drug_vector1 = tf.nn.l2_normalize(relu(tf.matmul(
@@ -212,10 +220,12 @@ class Model(object):
         tmp = tf.multiply(self.drug_protein_mask, (self.drug_protein_reconstruct-self.drug_protein))
         self.drug_protein_reconstruct_loss = tf.reduce_sum(tf.multiply(tmp, tmp))
 
+        self.l2_loss = tf.add_n(tf.get_collection("l2_reg"))
+
         self.loss = self.drug_protein_reconstruct_loss + 1.0*(self.drug_drug_reconstruct_loss+self.drug_chemical_reconstruct_loss+
                                                             self.drug_disease_reconstruct_loss+self.drug_sideeffect_reconstruct_loss+
                                                             self.protein_protein_reconstruct_loss+self.protein_sequence_reconstruct_loss+
-                                                            self.protein_disease_reconstruct_loss)
+                                                            self.protein_disease_reconstruct_loss) + self.l2_loss
 
 graph = tf.get_default_graph()
 with graph.as_default():

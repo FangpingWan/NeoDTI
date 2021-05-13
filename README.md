@@ -52,5 +52,5 @@ All entities (i.e., drugs, compounds, proteins, diseases and side-effects) are o
 
 
 # Contacts
-If you have any questions or comments, please feel free to email Fangping Wan (wfp15[at]mails[dot]tsinghua[dot]edu[dot]cn) and/or Jianyang Zeng (zengjy321[at]tsinghua[dot]edu[dot]cn).
+If you have any questions or comments, please feel free to email Fangping Wan (wfp15[at]tsinghua[dot]org[dot]cn) and/or Jianyang Zeng (zengjy321[at]tsinghua[dot]edu[dot]cn).
 
